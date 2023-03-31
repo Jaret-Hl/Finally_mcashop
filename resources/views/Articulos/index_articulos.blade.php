@@ -55,20 +55,16 @@
                                     <input type="text" class="form-control" id="art_codigofabricanteNuevo"
                                         name="art_codigofabricanteNuevo" tabindex="1"
                                         placeholder="Inserta codigo del fabricante" value="" required>
-                                </div>
+                                    </div>
+                                    <div class="col-6 me-2">
+                                        <label for="art_skuproveedor" class="form-label">SKU Proveedor</label>
+                                        <input type="text" class="form-control" id="art_skuproveedorNuevo"
+                                            name="art_skuproveedorNuevo" tabindex="1"
+                                            placeholder="Inserta sku del fabricante" value="" required>
+                                    </div>
                             </div>
                             <div class="d-flex">
-                                <div class="col-6 me-2">
-                                    <label for="art_skuproveedor" class="form-label">SKU Proveedor</label>
-                                    <input type="text" class="form-control" id="art_skuproveedorNuevo"
-                                        name="art_skuproveedorNuevo" tabindex="1"
-                                        placeholder="Inserta codigo del fabricante" value="" required>
-                                </div>
-                                <div class="col-sm-6 me-2">
-                                    <label for="mar_url" class="form-label">URL</label>
-                                    <input type="text" class="form-control" id="" name="" tabindex="1"
-                                        placeholder="URL de la marca*" value="" required>
-                                </div>
+                                
                             </div>
                         
                     </div>

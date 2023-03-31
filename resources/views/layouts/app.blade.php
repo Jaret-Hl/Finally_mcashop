@@ -71,6 +71,9 @@
                             @role('Admin|Vendedor|Vendedor2')
                                 <li><a class="nav-link" href="{{ route('cotizaciones.index') }}">Cotizaciones</a></li>
                             @endrole
+                            @role('Admin|Vendedor|Vendedor2')
+                                <li><a class="nav-link" href="{{ route('permissions.index') }}">Permission</a></li>
+                            @endrole
                             @role('Admin|Vendedor')
                                 <li><a class="nav-link" href="/cat_clientes">Clientes</a></li>
                             @endrole

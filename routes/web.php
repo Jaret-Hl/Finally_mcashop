@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticulosController;
 use App\Http\Controllers\cat_clientesController;
 use App\Http\Controllers\catalogo_proveedoresController;
 use App\Http\Controllers\CotizacionesController;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -32,6 +33,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::resource('permissions', PermissionController::class);
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
@@ -104,4 +106,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('edita_menu', [MenuController::class, 'edita_menu'])->name('edita_menu');
     Route::get('actualiza_menu', [MenuController::class, 'actualiza_menu'])->name('actualiza_menu');
 });
+
+
 

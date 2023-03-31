@@ -7,7 +7,7 @@
 @section('title', 'catArticulos')
 
 @section('content')
-<h1>hola</h1>
+<h1>Welcome a Menu</h1>
 @stop
 
 
