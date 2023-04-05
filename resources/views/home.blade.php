@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('setmenu')
+    @include('setmenu')
+@endsection
 
 @section('content')
 <div class="container">
