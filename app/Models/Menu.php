@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $table = 'menu';
+    protected $table = 'menu'; 
     public $timestamps = false;
     protected $primaryKey = 'menu_id';
+    
+    public function scopeRoles($query,$parametro)
+    {
+            return $query->where('role_id','=', $parametro);
+     
+    }
     
 }

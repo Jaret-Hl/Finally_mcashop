@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class setMenuModel extends Model
+class Role extends Model
 {
-    protected $table = 'menu';
+    protected $table = 'roles';
     public $timestamps = false;
-    protected $primaryKey = ['rol_id','menu_id','menu_rutas'];
+    protected $primaryKey = 'id';
 }
