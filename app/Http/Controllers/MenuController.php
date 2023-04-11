@@ -56,8 +56,8 @@ class MenuController extends Controller
     public function actualiza_menu(Request $request)    {
         $id = $request->get('menu_id');
         $menus = setMenuModel::find($id);
-        $menus->menu_rutas = $request->get('menu_rutasEdit');
-        $menus->title = $request->get('titleEdit');
+        $menus->menu_rutas = $request->get('menu_rutas');
+        $menus->title = $request->get('title');
         $menus->save();
         
         return response([ 'success' => true, 'menus'=>$menus ]);
