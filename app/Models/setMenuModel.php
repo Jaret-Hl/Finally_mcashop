@@ -10,4 +10,5 @@ class setMenuModel extends Model
     protected $table = 'menu';
     public $timestamps = false;
     protected $primaryKey = ['rol_id','menu_id','menu_rutas'];
+
 }
