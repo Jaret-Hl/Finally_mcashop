@@ -35,7 +35,7 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/menu', 'MenuController@index');
-Route::get('/menu', [MenuController::class,'index'])->name('menu');
+// Route::get('/menu', [MenuController::class,'index'])->name('menu');
 Route::get('/home', [setMenuController::class,'index'])->name('menu');
 Route::resource('permissions', PermissionController::class);
 Route::group(['middleware' => ['auth']], function() {
@@ -103,13 +103,13 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 //catalogo de Menus
-// Route::group(['middleware' => ['auth']], function() {
-//     Route::get('menu', [MenuController::class, 'index'])->name('menu')->middleware('auth');
-//     Route::get('listado_menu', [MenuController::class, 'listado_menu'])->name('listado_menu');
-//     Route::get('inserta_menu', [MenuController::class, 'inserta_menu'])->name('inserta_menu');
-//     Route::get('edita_menu', [MenuController::class, 'edita_menu'])->name('edita_menu');
-//     Route::get('actualiza_menu', [MenuController::class, 'actualiza_menu'])->name('actualiza_menu');
-// });
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu')->middleware('auth');
+    Route::get('listado_menu', [MenuController::class, 'listado_menu'])->name('listado_menu');
+    Route::get('inserta_menu', [MenuController::class, 'inserta_menu'])->name('inserta_menu');
+    Route::get('edita_menu', [MenuController::class, 'edita_menu'])->name('edita_menu');
+    Route::get('actualiza_menu', [MenuController::class, 'actualiza_menu'])->name('actualiza_menu');
+});
 
 
 
