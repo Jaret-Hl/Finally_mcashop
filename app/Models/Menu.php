@@ -8,7 +8,7 @@ class Menu extends Model
 {
     protected $table = 'menu_roles'; 
     public $timestamps = false;
-    protected $primaryKey = 'menu_id';
+    protected $primaryKey = 'menu_roles_ID';
     
     
 }

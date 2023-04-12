@@ -25,7 +25,7 @@ class MenuController extends Controller
     {
         $nombre = Auth::user()->id;
         $rol_id=$this->GetRole($nombre);
-        $menus = Menu::join('menu','menu.menu_id', '=', 'menu_roles.menu_id')
+        $menus = Menu::join('menu','menu.menu_id', '=', 'menu_roles.menu_roles_ID')
                     ->orderBy('role_id')
                     ->where('role_id',$rol_id)
                     ->get();

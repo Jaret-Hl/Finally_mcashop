@@ -110,6 +110,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('edita_menu', [MenuController::class, 'edita_menu'])->name('edita_menu');
     Route::get('actualiza_menu', [MenuController::class, 'actualiza_menu'])->name('actualiza_menu');
 });
+//catalogo de Menus_roles
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('set_menu', [setMenuController::class, 'index_menu_roles'])->name('set_menu')->middleware('auth');
+    Route::get('listado_menu_roles', [setMenuController::class, 'listado_menu_roles'])->name('listado_menu_roles');
+    Route::get('inserta_menu_roles', [setMenuController::class, 'inserta_menu_roles'])->name('inserta_menu_roles');
+    Route::get('edita_menu_roles', [setMenuController::class, 'edita_menu_roles'])->name('edita_menu_roles');
+    Route::get('actualiza_menu_roles', [setMenuController::class, 'actualiza_menu_roles'])->name('actualiza_menu_roles');
+});
 
 
 
