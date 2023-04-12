@@ -41,30 +41,33 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-
-                        @csrf
+                        <form action="">
+                            @csrf
+                            <div class="alert alert-danger print-error-msg" style="display:none">
+                                <ul></ul>
+                            </div>
                         <div class="d-flex justify-content-start">
                             <div class="col-6 me-2">
                                 <label for="menu_ruta" class="form-label">Nombre de la ruta</label>
                                 <input type="text" class="form-control" id="menu_rutasNuevo" name="menu_rutasNuevo"
                                     tabindex="1" placeholder="Inserta el nombre de la ruta" value="" required>
                             </div>
-                            <div class="col-6 me-2">
+                            <div class="col-4 me-2">
                                 <label for="title" class="form-label">Titulo de la ruta</label>
                                 <input type="text" class="form-control" id="titleNuevo" name="titleNuevo" tabindex="1"
                                     placeholder="Inserta el titulo de la ruta" value="" required>
                             </div>
                         </div>
-                        <div class="d-flex">
-
-                        </div>
+                        
+                    </form>
 
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btncerrarmodal" class="btn btn-secondary"
                         data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="btnguardarnuevomodal" class="btn btn-primary">Guardar</button>
+                    {{-- <button type="button" id="btnguardarnuevomodal" class="btn btn-primary">Guardar</button> --}}
+                    <button class="btn btn-success btn-submit">Submit</button>
                 </div>
             </div>
         </div>
@@ -95,6 +98,8 @@
                                     <label for="menu_rutas" class="form-label">Nombre de la ruta</label>
                                     <input type="text" class="form-control" id="menu_rutasEdit" name="menu_rutasEdit"
                                         tabindex="1" placeholder="Inserta el nombre de la ruta" value="" required>
+                                    <span class="text-danger" id="nombrError"></span>
+
                                 </div>
                                 <div class="col-6 me-2">
                                     <label for="title" class="form-label">Titulo de la ruta</label>
@@ -125,6 +130,46 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript">
+      
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+      
+        $(".btn-submit").click(function(e){
+        
+            e.preventDefault();
+         
+            var menu_rutas = $("#menu_rutasNuevo").val();
+            var title = $("#titleNuevo").val();
+         
+            $.ajax({
+               type:'GET',
+               url:"{{ route('inserta_menu') }}",
+               data:{title:title, menu_rutas:menu_rutas},
+               success:function(data){
+                    if($.isEmptyObject(data.error)){
+                        alert(data.success);
+                        location.reload();
+                    }else{
+                        printErrorMsg(data.error);
+                    }
+               }
+            });
+        
+        });
+      
+        function printErrorMsg (msg) {
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','block');
+            $.each( msg, function( key, value ) {
+                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+            });
+        }
+      
+    </script>
     <script>
                 $(document).ready(function() {
             $tbl_listado = $('#menu').DataTable({
@@ -182,37 +227,7 @@
                 $('#nuevomenu').modal('show');
             });
         });
-        // Guardar Registro
-        $(function() {
-            $(document).on('click', '#btnguardarnuevomodal', function() {
-                $menu_rutasNuevo = $('#menu_rutasNuevo').val();
-                $titleNuevo = $('#titleNuevo').val();
-                console.log($menu_rutasNuevo);
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    url: "{{ route('inserta_menu') }}",
-                    method: "GET",
-                    dataType: 'JSON',
-                    //   dataSrc: "",
-                    data: {
-
-                        menu_rutasNuevo: $menu_rutasNuevo,
-                        titleNuevo: $titleNuevo,
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        toastr.options.showMethod = 'slideDown';
-                        toastr.options.hideMethod = 'slideUp';
-                        toastr.info('Se registro el menu');
-                        $('#nuevomenu').modal('hide');
-                        window.location.href = "menu";
-
-                    }
-                });
-            });
-        });
+        
         /////////
 
         //////////////  Editar cliente  //////////////////////////

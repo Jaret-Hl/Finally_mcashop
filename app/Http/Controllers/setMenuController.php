@@ -7,6 +7,7 @@ use App\Models\setMenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class setMenuController extends Controller
 {
@@ -14,7 +15,7 @@ class setMenuController extends Controller
     {
         $nombre = Auth::user()->id;
         $rol_id=$this->GetRole($nombre);
-        $menus = Menu::join('menu','menu.menu_id', '=', 'menu_roles.menu_roles_ID')
+        $menus = Menu::join('menu','menu.menu_id', '=', 'menu_roles.menu_id')
                     ->orderBy('role_id')
                     ->where('role_id',$rol_id)
                     ->get();
@@ -43,6 +44,7 @@ class setMenuController extends Controller
        return $registros ;
     }
     public function inserta_menu_roles(Request $request){
+        
         $menus_roles = new Menu();
 
         $menus_roles->role_id = $request->get('rolIDNuevo');
