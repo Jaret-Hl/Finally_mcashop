@@ -17,7 +17,7 @@ class MenuController extends Controller
     // }
     public function GetRole($nombre){
         $registros = DB::select("SELECT role_id 
-        FROM mcash.model_has_roles,users 
+        FROM permisosyroles.model_has_roles,users 
         where  model_id=id and model_id=".$nombre);
         $role_id=$registros[0]->role_id;
        return $role_id ;

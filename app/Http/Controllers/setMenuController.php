@@ -15,25 +15,30 @@ class setMenuController extends Controller
     {
         $nombre = Auth::user()->id;
         $rol_id=$this->GetRole($nombre);
+        // dd($rol_id);
+        printf($rol_id);
         $menus = Menu::join('menu','menu.menu_id', '=', 'menu_roles.menu_id')
                     ->orderBy('role_id')
                     ->where('role_id',$rol_id)
                     ->get();
 
-        return view('setmenu', compact('menus'));
+        // return view('setmenu', compact('menus'));
         // return $menus;
+        return $rol_id;
     }
     public function index_menu_roles()
     {
+        $menus = setMenuModel::all();
+
         $menu_roles = Menu::all();
         // return view('set_menu.index')->with('menu_roles',$menu_roles); 
-        return view('set_menu.index', compact('menu_roles'));
+        return view('set_menu.index', compact('menu_roles','menus'));
 
     }
     
     public function GetRole($nombre){
         $registros = DB::select("SELECT role_id 
-        FROM mcash.model_has_roles,users 
+        FROM permisosyroles.model_has_roles,users 
         where  model_id=id and model_id=".$nombre);
         $role_id=$registros[0]->role_id;
        return $role_id ;

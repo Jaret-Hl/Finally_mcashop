@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
+use App\Models\setMenuModel;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
@@ -20,8 +21,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $menus = setMenuModel::all();
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
+        return view('users.index',compact('data','menus'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     

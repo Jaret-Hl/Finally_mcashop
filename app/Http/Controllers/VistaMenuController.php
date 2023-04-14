@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\Models\Menu;
 
-class HomeController extends Controller
+class VistaMenuController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\setMenuModel;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
@@ -14,8 +15,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        $menus = setMenuModel::all();
         $permissions = Permission::all();
-        return view('permissions.index')->with('permissions',$permissions); 
+        return view('permissions.index' ,compact('permissions','menus'));
+ 
     }
 
 

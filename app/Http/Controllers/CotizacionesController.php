@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cotizaciones;
+use App\Models\setMenuModel;
 use Illuminate\Http\Request;
 
 class CotizacionesController extends Controller
@@ -21,8 +22,9 @@ class CotizacionesController extends Controller
      */
     public function index()
     {
+        $menus = setMenuModel::all();
         $cotizaciones = Cotizaciones::latest()->paginate(5);
-        return view('cotizaciones.index',compact('cotizaciones'));
+        return view('cotizaciones.index',compact('cotizaciones','menus'));
             // ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     

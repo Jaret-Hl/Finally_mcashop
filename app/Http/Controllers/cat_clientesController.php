@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cat_clientes;
 use App\Models\Cat_Clientes_Direccion;
+use App\Models\setMenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Contracts\Service\Attribute\Required;
@@ -16,8 +17,10 @@ class cat_clientesController extends Controller
     }
     public function index()
     {
+        $menus = setMenuModel::all();
         $clientes = Cat_clientes::all();
-        return view('cat_clientes.index_clientes')->with('clientes',$clientes);      
+        return view('cat_clientes.index_clientes',compact('clientes','menus'));
+ 
     }
 
     public function listado_clientes()

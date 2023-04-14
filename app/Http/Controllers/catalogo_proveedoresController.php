@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\catalogo_direccion_proveedores;
 use App\Models\catalogo_proveedores;
+use App\Models\setMenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -17,8 +18,10 @@ class catalogo_proveedoresController extends Controller
     }
     public function index_prov()
     {
+        $menus = setMenuModel::all();
         $proveedores = catalogo_proveedores::all();
-        return view('catalogo_proveedores.index_prov')->with('proveedores', $proveedores);
+        return view('catalogo_proveedores.index_prov',compact('proveedores','menus'));
+ 
     }
     public function listado_proveedores()
     {

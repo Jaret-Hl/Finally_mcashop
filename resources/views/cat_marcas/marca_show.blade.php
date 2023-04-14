@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@extends('setmenu')
 
 
 @section('title', 'Home')

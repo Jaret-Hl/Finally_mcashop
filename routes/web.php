@@ -34,9 +34,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-// Route::get('/menu', 'MenuController@index');
-// Route::get('/menu', [MenuController::class,'index'])->name('menu');
-// Route::get('/home', [setMenuController::class,'index'])->name('menu');
+
 Route::resource('permissions', PermissionController::class);
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);

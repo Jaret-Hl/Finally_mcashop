@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articulos;
+use App\Models\setMenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,13 @@ class ArticulosController extends Controller
     }
     public function index()
     {
+        $menus = setMenuModel::all();
+        
         $articulos = Articulos::all();
-        return view('Articulos.index_articulos')->with('articulos',$articulos);      
+        // return view('Articulos.index_articulos')->with('articulos',$articulos);  
+        return view('Articulos.index_articulos',compact('articulos','menus'));
+ 
+            
     }
     public function listado_articulos()
     {
